@@ -1,0 +1,113 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using AllegroPay.CosmosDb.BatchUtilities.Configuration;
+using Microsoft.Azure.Cosmos;
+using Microsoft.Azure.Cosmos.Fluent;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+namespace AllegroPay.CosmosDb.BatchUtilities.Extensions
+{
+    public static class CosmosExtensions
+    {
+        public static IServiceCollection AddCosmosBatchUtilitiesFromConfiguration(
+            this IServiceCollection services,
+            IConfiguration configuration,
+            string configurationSection,
+            Action<CosmosClientBuilder>? additionalCosmosConfiguration = null)
+        {
+            var configurations = configuration
+                .GetSection(configurationSection)
+                .Get<CosmosBatchUtilitiesConfigurations>();
+            var registrations = new List<BatchUtilitiesRegistration>();
+
+            foreach (var (databaseName, databaseConfiguration) in configurations.Databases)
+            {
+                if (!databaseConfiguration.Containers.Any())
+                {
+                    registrations.Add(
+                        BatchUtilitiesRegistration.ForDatabase(
+                            databaseName,
+                            RateLimiter.WithMaxRps(databaseConfiguration.MaxRu),
+                            databaseConfiguration.AutoScaler));
+                    continue;
+                }
+
+                foreach (var (containerName, containerConfiguration) in databaseConfiguration.Containers)
+                {
+                    registrations.Add(
+                        BatchUtilitiesRegistration.ForContainer(
+                            databaseName,
+                            containerName,
+                            RateLimiter.WithMaxRps(containerConfiguration.MaxRu),
+                            containerConfiguration.AutoScaler));
+                }
+            }
+
+            return services.AddCosmosBatchUtilities(
+                additionalCosmosConfiguration,
+                registrations.ToArray());
+        }
+
+        public static IServiceCollection AddCosmosBatchUtilities(
+            this IServiceCollection services,
+            params BatchUtilitiesRegistration[] registrations)
+        {
+            return services.AddCosmosBatchUtilities(null, registrations);
+        }
+
+        public static IServiceCollection AddCosmosBatchUtilities(
+            this IServiceCollection services,
+            Action<CosmosClientBuilder>? additionalCosmosConfiguration,
+            params BatchUtilitiesRegistration[] registrations)
+        {
+            var ruLimiterRegistrations = registrations
+                .Where(x => x.RuLimiter != null)
+                .ToArray();
+
+            if (ruLimiterRegistrations.Any())
+            {
+                services.AddSingleton<ICosmosClientProvider>(
+                    sp =>
+                    {
+                        var cosmosClient = sp.GetRequiredService<CosmosClient>();
+                        var builderFactory = sp.GetRequiredService<Func<CosmosClientBuilder>>();
+                        var logger = sp.GetRequiredService<ILogger<BatchRequestHandler>>();
+
+                        var batchClientBuilder = builderFactory()
+                            .AddCustomHandlers(new BatchRequestHandler(logger, registrations));
+
+                        additionalCosmosConfiguration?.Invoke(batchClientBuilder);
+
+                        return new CosmosClientProvider(
+                            cosmosClient,
+                            batchClientBuilder.Build());
+                    });
+            }
+
+            var autoScalerRegistrations = registrations
+                .Where(x => x.CosmosAutoScalerConfiguration != null)
+                .ToArray();
+
+            if (autoScalerRegistrations.Any())
+            {
+                services.AddHostedService(sp => new CosmosAutoScalerInitializationHostedService(sp));
+
+                services.AddSingleton<ICosmosAutoScalerFactory>(
+                    sp =>
+                    {
+                        var cosmosClient = sp.GetRequiredService<CosmosClient>();
+                        var loggerFactory = sp.GetRequiredService<ILoggerFactory>();
+                        return new CosmosAutoScalerFactory(
+                            cosmosClient,
+                            loggerFactory,
+                            autoScalerRegistrations);
+                    });
+            }
+
+            return services;
+        }
+    }
+}
