@@ -1,35 +1,35 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-      <PackageId>Allegro.CosmosDb.BatchUtilities</PackageId>
-      <PackageDescription>Utilities for performing batch operations in Azure CosmosDb, such as rate limiting and autoscaling.</PackageDescription>
-      <Version>1.0.1</Version>
-    </PropertyGroup>
+  <PropertyGroup>
+    <PackageId>Allegro.CosmosDb.BatchUtilities</PackageId>
+    <PackageDescription>Utilities for performing batch operations in Azure CosmosDb, such as rate limiting and autoscaling.</PackageDescription>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
 
-    <Import Project="..\..\Package.Build.props" />
+  <Import Project="..\..\Package.Build.props"/>
 
-    <ItemGroup>
-      <PackageReference Include="AsyncFixer" Version="1.5.1">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Asyncify" Version="0.9.7" />
-      <PackageReference Include="Meziantou.Analyzer" Version="1.0.676">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.22.0" />
-      <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
-      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
-      <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
-      <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.0.64">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.354">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AsyncFixer" Version="1.5.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Asyncify" Version="0.9.7"/>
+    <PackageReference Include="Meziantou.Analyzer" Version="1.0.676">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.22.0"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0"/>
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.0.64">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.354">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
 </Project>
