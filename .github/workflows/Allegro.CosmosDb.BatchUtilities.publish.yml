@@ -1,8 +1,7 @@
-name: Publish
+name: Allegro.CosmosDb.BatchUtilities Publish
 
 on:
-  release:
-    types: [ created ]
+  push:
     tags:
       - 'Allegro.CosmosDb.BatchUtilities_*'
 
@@ -12,7 +11,7 @@ jobs:
     with:
       projectName: Allegro.CosmosDb.BatchUtilities
       publish: true
-      tagName: ${{ github.event.release.tag_name }}
+      tagName: ${{ github.ref_name }}
     secrets:
       nugetCertificate: ${{ secrets.NUGET_PRIVATE_KEY_P12 }}
       nugetCertificatePassword: ${{ secrets.GPG_PRIVATE_KEY_PASSWORD }}
