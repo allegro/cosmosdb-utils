@@ -13,9 +13,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)..\README.md" Pack="true" PackagePath="\"/>
-    <None Include="$(MSBuildThisFileDirectory)..\CHANGELOG.md" Pack="true" PackagePath="\"/>
-    <None Include="$(MSBuildThisFileDirectory)..\docs\**" Pack="true" PackagePath="\docs\"/>
+    <None Include="$(MSBuildThisFileDirectory)$(MSBuildProjectName)\README.md" Pack="true" PackagePath="\"/>
+    <None Include="$(MSBuildThisFileDirectory)$(MSBuildProjectName)\CHANGELOG.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
 </Project>

@@ -4,10 +4,10 @@ This repo contains a collection of useful Azure CosmosDb SDK v3 extensions and u
 
 ## Utilities
 
-- [Allegro.CosmosDb.BatchUtilities](docs/Allegro.CosmosDb.BatchUtilities/README.md) - utilities for performing batch operations in Azure CosmosDb, such as rate limiting and autoscaling. <br/>
-  [![Build Status](https://github.com/allegro/cosmosdb-utils/actions/workflows/Allegro.CosmosDb.BatchUtilities.ci.yml/badge.svg?branch=main)](https://github.com/allegro/cosmosdb-utils/actions/workflows/Allegro.CosmosDb.BatchUtilities.ci.yml?query=branch%3Amain)
-- [Allegro.CosmosDb.ConsistencyLevelUtilities](docs/Allegro.CosmosDb.ConsistencyLevelUtilities/README.md) - utilities helpful in handling CosmosDb Consistency Levels. <br/>
-  [![Build Status](https://github.com/allegro/cosmosdb-utils/actions/workflows/Allegro.CosmosDb.ConsistencyLevelUtilities.ci.yml/badge.svg?branch=main)](https://github.com/allegro/cosmosdb-utils/actions/workflows/Allegro.CosmosDb.ConsistencyLevelUtilities.ci.yml?query=branch%3Amain)
+- [Allegro.CosmosDb.BatchUtilities](src/Allegro.CosmosDb.BatchUtilities/README.md) - utilities for performing batch operations in Azure CosmosDb, such as rate limiting and autoscaling.  
+  [![NuGet](https://img.shields.io/nuget/v/Allegro.CosmosDb.BatchUtilities.svg)](https://nuget.org/packages/Allegro.CosmosDb.BatchUtilities) [![Build Status](https://github.com/allegro/cosmosdb-utils/actions/workflows/Allegro.CosmosDb.BatchUtilities.ci.yml/badge.svg?branch=main)](https://github.com/allegro/cosmosdb-utils/actions/workflows/Allegro.CosmosDb.BatchUtilities.ci.yml?query=branch%3Amain)
+- [Allegro.CosmosDb.ConsistencyLevelUtilities](src/Allegro.CosmosDb.ConsistencyLevelUtilities/README.md) - utilities helpful in handling CosmosDb Consistency Levels.  
+  [![NuGet](https://img.shields.io/nuget/v/Allegro.CosmosDb.ConsistencyLevelUtilities.svg)](https://nuget.org/packages/Allegro.CosmosDb.ConsistencyLevelUtilities) [![Build Status](https://github.com/allegro/cosmosdb-utils/actions/workflows/Allegro.CosmosDb.ConsistencyLevelUtilities.ci.yml/badge.svg?branch=main)](https://github.com/allegro/cosmosdb-utils/actions/workflows/Allegro.CosmosDb.ConsistencyLevelUtilities.ci.yml?query=branch%3Amain)
 
 ## License
 
