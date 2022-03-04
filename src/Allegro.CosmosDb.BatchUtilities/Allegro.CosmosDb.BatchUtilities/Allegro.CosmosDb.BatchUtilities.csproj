@@ -3,7 +3,7 @@
     <PropertyGroup>
       <PackageId>Allegro.CosmosDb.BatchUtilities</PackageId>
       <PackageDescription>Utilities for performing batch operations in Azure CosmosDb, such as rate limiting and autoscaling.</PackageDescription>
-      <Version>1.0.0</Version>
+      <Version>1.0.1</Version>
     </PropertyGroup>
 
     <Import Project="..\..\Package.Build.props" />
