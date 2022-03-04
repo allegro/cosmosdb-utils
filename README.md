@@ -1,12 +1,13 @@
-# AllegroPay.CosmosDb
-[![Build Status](https://github.com/allegro/cosmosdb-utils/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/allegro/cosmosdb-utils/actions/workflows/ci.yml?query=branch%3Amain)
+# Allegro CosmosDb utils
 
 This repo contains a collection of useful Azure CosmosDb SDK v3 extensions and utilities, developed as part of [Allegro Pay](https://allegropay.pl/) product.
 
 ## Utilities
 
-- [AllegroPay.CosmosDb.BatchUtilities](docs/AllegroPay.CosmosDb.BatchUtilities/README.md) - utilities for performing batch operations in Azure CosmosDb, such as rate limiting and autoscaling.
-- [AllegroPay.CosmosDb.ConsistencyLevelUtilities](docs/AllegroPay.CosmosDb.ConsistencyLevelUtilities/README.md) - utilities helpful in handling CosmosDb Consistency Levels.
+- [Allegro.CosmosDb.BatchUtilities](docs/Allegro.CosmosDb.BatchUtilities/README.md) - utilities for performing batch operations in Azure CosmosDb, such as rate limiting and autoscaling. <br/>
+  [![Build Status](https://github.com/allegro/cosmosdb-utils/actions/workflows/Allegro.CosmosDb.BatchUtilities.ci.yml/badge.svg?branch=main)](https://github.com/allegro/cosmosdb-utils/actions/workflows/Allegro.CosmosDb.BatchUtilities.ci.yml?query=branch%3Amain)
+- [Allegro.CosmosDb.ConsistencyLevelUtilities](docs/Allegro.CosmosDb.ConsistencyLevelUtilities/README.md) - utilities helpful in handling CosmosDb Consistency Levels. <br/>
+  [![Build Status](https://github.com/allegro/cosmosdb-utils/actions/workflows/Allegro.CosmosDb.ConsistencyLevelUtilities.ci.yml/badge.svg?branch=main)](https://github.com/allegro/cosmosdb-utils/actions/workflows/Allegro.CosmosDb.ConsistencyLevelUtilities.ci.yml?query=branch%3Amain)
 
 ## License
 

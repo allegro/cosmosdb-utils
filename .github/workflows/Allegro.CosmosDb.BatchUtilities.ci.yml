@@ -1,0 +1,19 @@
+name: Allegro.CosmosDb.BatchUtilities CI
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/Allegro.CosmosDb.BatchUtilities/**'
+      - 'src/*'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'src/Allegro.CosmosDb.BatchUtilities/**'
+      - 'src/*'
+
+jobs:
+  ci:
+    uses: ./.github/workflows/template.yml
+    with:
+      projectName: Allegro.CosmosDb.BatchUtilities

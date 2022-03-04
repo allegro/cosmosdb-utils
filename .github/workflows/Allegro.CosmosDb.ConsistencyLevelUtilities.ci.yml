@@ -1,0 +1,19 @@
+name: Allegro.CosmosDb.ConsistencyLevelUtilities CI
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/Allegro.CosmosDb.ConsistencyLevelUtilities/**'
+      - 'src/*'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'src/Allegro.CosmosDb.ConsistencyLevelUtilities/**'
+      - 'src/*'
+
+jobs:
+  ci:
+    uses: ./.github/workflows/template.yml
+    with:
+      projectName: Allegro.CosmosDb.ConsistencyLevelUtilities

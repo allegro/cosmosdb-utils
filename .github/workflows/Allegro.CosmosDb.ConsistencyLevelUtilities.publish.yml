@@ -1,0 +1,19 @@
+name: Publish
+
+on:
+  release:
+    types: [ created ]
+    tags:
+      - 'Allegro.CosmosDb.ConsistencyLevelUtilities_*'
+
+jobs:
+  publish:
+    uses: ./.github/workflows/template.yml
+    with:
+      projectName: Allegro.CosmosDb.ConsistencyLevelUtilities
+      publish: true
+      tagName: ${{ github.event.release.tag_name }}
+    secrets:
+      nugetCertificate: ${{ secrets.NUGET_PRIVATE_KEY_P12 }}
+      nugetCertificatePassword: ${{ secrets.GPG_PRIVATE_KEY_PASSWORD }}
+      nugetApiKey: ${{ secrets.NUGET_API_KEY }}

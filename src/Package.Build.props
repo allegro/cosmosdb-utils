@@ -1,0 +1,19 @@
+<Project>
+
+  <PropertyGroup>
+    <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
+    <Authors>Allegro</Authors>
+    <Company>Allegro</Company>
+    <Copyright>Copyright 2021 Allegro Group</Copyright>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/allegro/cosmosdb-utils</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)..\README.md" Pack="true" PackagePath="\"/>
+    <None Include="$(MSBuildThisFileDirectory)..\CHANGELOG.md" Pack="true" PackagePath="\"/>
+    <None Include="$(MSBuildThisFileDirectory)..\docs\**" Pack="true" PackagePath="\docs\"/>
+  </ItemGroup>
+
+</Project>
