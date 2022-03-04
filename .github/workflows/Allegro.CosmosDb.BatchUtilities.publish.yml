@@ -1,4 +1,4 @@
-name: Allegro.CosmosDb.BatchUtilities Publish
+name: Publish Allegro.CosmosDb.BatchUtilities
 
 on:
   push:

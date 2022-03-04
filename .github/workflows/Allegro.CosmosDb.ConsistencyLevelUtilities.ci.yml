@@ -1,4 +1,4 @@
-name: Allegro.CosmosDb.ConsistencyLevelUtilities CI
+name: Build Allegro.CosmosDb.ConsistencyLevelUtilities
 
 on:
   push:

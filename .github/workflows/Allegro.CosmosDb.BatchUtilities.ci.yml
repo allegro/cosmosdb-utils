@@ -1,4 +1,4 @@
-name: Allegro.CosmosDb.BatchUtilities CI
+name: Build Allegro.CosmosDb.BatchUtilities
 
 on:
   push:

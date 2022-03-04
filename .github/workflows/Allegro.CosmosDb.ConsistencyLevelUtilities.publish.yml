@@ -1,4 +1,4 @@
-name: Allegro.CosmosDb.ConsistencyLevelUtilities Publish
+name: Publish Allegro.CosmosDb.ConsistencyLevelUtilities
 
 on:
   push:
