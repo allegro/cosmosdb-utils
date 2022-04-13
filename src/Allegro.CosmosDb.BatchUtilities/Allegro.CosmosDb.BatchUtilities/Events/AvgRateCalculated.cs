@@ -10,11 +10,11 @@ namespace Allegro.CosmosDb.BatchUtilities.Events
             double avgRate,
             TimeSpan period)
         {
-            AvgRage = avgRate;
+            AvgRate = avgRate;
             Period = period;
         }
 
-        public double AvgRage { get; }
+        public double AvgRate { get; }
         public TimeSpan Period { get; }
     }
 }
