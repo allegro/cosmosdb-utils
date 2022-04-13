@@ -79,8 +79,19 @@ namespace Allegro.CosmosDb.BatchUtilities
         public double MaxRate { get; private set; }
         public TimeSpan RateInterval { get; }
 
+        /// <summary>
+        /// Emitted when <see cref="MaxRate"/> is exceeded.
+        /// </summary>
         public event MaxRateExceededEventHandler? MaxRateExceeded;
+
+        /// <summary>
+        /// Emitted when <see cref="MaxRate"/> is changed.
+        /// </summary>
         public event MaxRateChangedEventHandler? MaxRateChanged;
+
+        /// <summary>
+        /// Emitted when <see cref="AvgRate"/> is calculated.
+        /// </summary>
         public event AvgRateCalculatedEventHandler? AvgRateCalculated;
 
         public RateLimiter(double maxRate, TimeSpan rateInterval)

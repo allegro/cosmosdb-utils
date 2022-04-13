@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Allegro.CosmosDb.BatchUtilities.Configuration;
+using Allegro.CosmosDb.BatchUtilities.Events;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Fluent;
 using Microsoft.Extensions.Configuration;
@@ -100,9 +101,11 @@ namespace Allegro.CosmosDb.BatchUtilities.Extensions
                     {
                         var cosmosClient = sp.GetRequiredService<CosmosClient>();
                         var loggerFactory = sp.GetRequiredService<ILoggerFactory>();
+                        var cosmosMetricsEventHandlers = sp.GetServices<CosmosAutoScalerMetricsCalculatedEventHandler>();
                         return new CosmosAutoScalerFactory(
                             cosmosClient,
                             loggerFactory,
+                            cosmosMetricsEventHandlers,
                             autoScalerRegistrations);
                     });
             }

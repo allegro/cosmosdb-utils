@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Allegro.CosmosDb.BatchUtilities.Configuration;
+using Allegro.CosmosDb.BatchUtilities.Events;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Logging;
 
@@ -25,18 +26,40 @@ namespace Allegro.CosmosDb.BatchUtilities
             CosmosClient cosmosClient,
             ILoggerFactory loggerFactory,
             params BatchUtilitiesRegistration[] batchUtilitiesRegistrations)
+            : this(
+                cosmosClient,
+                loggerFactory,
+                metricsCalculatedEventHandlers: Array.Empty<CosmosAutoScalerMetricsCalculatedEventHandler>(),
+                batchUtilitiesRegistrations)
+        {
+        }
+
+        public CosmosAutoScalerFactory(
+            CosmosClient cosmosClient,
+            ILoggerFactory loggerFactory,
+            IEnumerable<CosmosAutoScalerMetricsCalculatedEventHandler> metricsCalculatedEventHandlers,
+            params BatchUtilitiesRegistration[] batchUtilitiesRegistrations)
         {
             _autoScalers = batchUtilitiesRegistrations.ToDictionary(
                 x => FormatKey(x.DatabaseName, x.ContainerName),
-                x => new CosmosAutoScaler(
-                    loggerFactory.CreateLogger<CosmosAutoScaler>(),
-                    GetScalableObject(cosmosClient, x),
-                    x.RuLimiter,
-                    new CosmosBatchUtilitiesConfiguration
+                x =>
+                {
+                    var autoScaler = new CosmosAutoScaler(
+                        loggerFactory.CreateLogger<CosmosAutoScaler>(),
+                        GetScalableObject(cosmosClient, x),
+                        x.RuLimiter,
+                        new CosmosBatchUtilitiesConfiguration
+                        {
+                            MaxRu = x.RuLimiter.MaxRate, AutoScaler = x.CosmosAutoScalerConfiguration
+                        });
+
+                    foreach (var eventHandler in metricsCalculatedEventHandlers)
                     {
-                        MaxRu = x.RuLimiter.MaxRate,
-                        AutoScaler = x.CosmosAutoScalerConfiguration
-                    }));
+                        autoScaler.CosmosAutoScalerMetricsCalculated += eventHandler;
+                    }
+
+                    return autoScaler;
+                });
         }
 
         public ICosmosAutoScaler ForContainer(string databaseName, string containerName)
