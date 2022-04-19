@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Allegro.CosmosDb.BatchUtilities.Configuration;
+using Allegro.CosmosDb.BatchUtilities.Events;
 using Microsoft.Extensions.Logging;
 
 #pragma warning disable VSTHRD110
@@ -18,12 +19,15 @@ namespace Allegro.CosmosDb.BatchUtilities
         private readonly ICosmosScalableObject _scalableObject;
         private readonly IRateLimiterWithVariableRate _ruLimiter;
         private readonly CosmosBatchUtilitiesConfiguration _configuration;
-
         private readonly Timer _timer = null!; // just keeping reference to prevent GC collection
 
         private bool _scaledUp;
-
         private DateTimeOffset _lastBatchReported = DateTimeOffset.MinValue;
+
+        /// <summary>
+        /// Emitted when periodic auto scaler metrics are calculated (every minute).
+        /// </summary>
+        public event CosmosAutoScalerMetricsCalculatedEventHandler? CosmosAutoScalerMetricsCalculated;
 
         public CosmosAutoScaler(
             ILogger<CosmosAutoScaler> logger,
@@ -95,6 +99,7 @@ namespace Allegro.CosmosDb.BatchUtilities
             }
 
             DownScaler();
+            PublishEvent();
         }
 
         private void DownScaler()
@@ -189,6 +194,25 @@ namespace Allegro.CosmosDb.BatchUtilities
                     => true,
                 _ => false
             };
+        }
+
+        private void PublishEvent()
+        {
+            if (_configuration.AutoScaler?.Enabled != true)
+            {
+                return;
+            }
+
+            CosmosAutoScalerMetricsCalculated?.Invoke(this, new CosmosAutoScalerMetricsCalculatedEventArgs(
+                this,
+                _scalableObject.DatabaseName,
+                _scalableObject.ContainerName,
+                _ruLimiter.MaxRate,
+                _ruLimiter.AvgRate,
+                _scaledUp
+                    ? _configuration.AutoScaler.ProcessingMaxThroughput
+                    : _configuration.AutoScaler.IdleMaxThroughput,
+                _configuration.AutoScaler.ProvisioningMode));
         }
     }
 }

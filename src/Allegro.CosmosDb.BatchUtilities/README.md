@@ -137,3 +137,18 @@ public class SampleBatchCommandHandler
     }
 }
 ```
+
+### Collect auto scaler metrics
+
+The Cosmos Auto Scaler utility periodically calculates some metrics, that can be collected using `CosmosAutoScalerMetricsCalculatedEventHandler`. Just register your handler with the DI container:
+
+```c#
+services.AddSingleton(
+    new CosmosAutoScalerMetricsCalculatedEventHandler(
+        (_, e) =>
+        {
+            Console.WriteLine($"[{e.DatabaseName}/{e.ContainerName}] LimiterMaxRate: {e.LimiterMaxRate}");
+            Console.WriteLine($"[{e.DatabaseName}/{e.ContainerName}] LimiterAvgRate: {e.LimiterAvgRate}");
+            Console.WriteLine($"[{e.DatabaseName}/{e.ContainerName}] MaxThroughput: {e.MaxThroughput}");
+        }));
+```

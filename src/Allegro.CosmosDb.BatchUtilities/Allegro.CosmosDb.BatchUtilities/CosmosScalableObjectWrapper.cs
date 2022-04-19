@@ -10,6 +10,9 @@ namespace Allegro.CosmosDb.BatchUtilities
     /// </summary>
     public interface ICosmosScalableObject
     {
+        string? ContainerName { get; }
+        string? DatabaseName { get; }
+
         Task Scale(int targetThroughput, CosmosProvisioningMode provisioningMode);
         Task<ThroughputResponse> GetCurrentThroughput();
     }
@@ -28,6 +31,9 @@ namespace Allegro.CosmosDb.BatchUtilities
         {
             _container = container;
         }
+
+        public string? ContainerName => _container?.Id;
+        public string? DatabaseName => _database?.Id ?? _container?.Database?.Id;
 
         public Task Scale(int targetThroughput, CosmosProvisioningMode provisioningMode)
         {
