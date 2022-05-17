@@ -24,7 +24,7 @@ namespace Allegro.CosmosDb.Demo.Infrastructure
             CosmosDocumentRuLimiter.AvgRateCalculated += (_, args) =>
             {
                 Console.WriteLine(
-                    $"{nameof(CosmosDocumentRuLimiter)} avg RU calculated {args.AvgRage} over {args.Period.TotalSeconds}s.");
+                    $"{nameof(CosmosDocumentRuLimiter)} avg RU calculated {args.AvgRate} over {args.Period.TotalSeconds}s.");
             };
         }
     }

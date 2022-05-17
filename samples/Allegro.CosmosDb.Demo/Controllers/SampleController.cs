@@ -103,7 +103,7 @@ namespace Allegro.CosmosDb.Demo.Controllers
                 nameof(CosmosRuLimiters.CosmosDocumentRuLimiter),
                 CosmosRuLimiters.CosmosDocumentRuLimiter.AvgRate);
 
-            return Ok(response.Select(x => x.Resource));
+            return NoContent();
         }
 
         [HttpGet("custom-consistency/{documentId}")]
