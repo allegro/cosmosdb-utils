@@ -113,27 +113,13 @@ namespace Allegro.CosmosDb.Migrator.Infrastructure
             return builder;
         }
 
-        // private static IConveyBuilder AddCosmosRepository<T>(this IConveyBuilder builder) where T: ICosmosDocument
-        // {
-        //     builder.Services.AddScoped<ICosmosRepository<T>>(s =>
-        //         new CosmosRepository<T>(s.GetRequiredService<ICosmosStorage>(),
-        //             s.GetRequiredService<ITransactionScopeAssigner>()));
-        //
-        //     return builder;
-        // }
-
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
         {
-            // PPTODO: add cosmos initialization here
             app.UseErrorHandler()
                 .UseConvey()
                 .UseSwaggerDocs()
                 .UseErrorHandler()
-                .UsePublicContracts<ContractAttribute>()
-                // .UseMetrics()
-                // .UseMiddleware<CustomMetricsMiddleware>()
-                // .UseCertificateAuthentication()
-                ;
+                .UsePublicContracts<ContractAttribute>();
 
             return app;
         }

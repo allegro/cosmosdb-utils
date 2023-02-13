@@ -341,7 +341,7 @@ namespace Allegro.CosmosDb.Migrator.Infrastructure.CosmosDb.ChangeFeed
             Queue<StreamDocumentWrapper> queue,
             RuConsumptionCalculator ruConsumptionCalculator)
         {
-            // PPTODO: we should add wraper over container or use Queue. this method has side effect and is designed poorly
+            // TODO: we should add wrapper over container or use Queue. this method has side effect and is designed poorly
             var maxDocumentsPerSec = ruConsumptionCalculator.CalculateMaxDocumentPerSecond();
 
             var documentToTake = maxDocumentsPerSec > queue.Count ? queue.Count : maxDocumentsPerSec;

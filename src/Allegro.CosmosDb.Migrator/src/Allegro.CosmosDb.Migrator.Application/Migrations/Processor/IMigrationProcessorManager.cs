@@ -71,7 +71,7 @@ namespace Allegro.CosmosDb.Migrator.Application.Migrations.Processor
 
             if (activeMigration.NotInitialized)
             {
-                await TryInitMigration(activeMigration); // TODO: test it
+                await TryInitMigration(activeMigration);
             }
 
             var migrationProcessorStartResult =

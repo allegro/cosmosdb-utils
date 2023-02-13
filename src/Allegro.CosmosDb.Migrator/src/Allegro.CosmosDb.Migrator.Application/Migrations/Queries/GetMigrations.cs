@@ -4,7 +4,7 @@ using Convey.CQRS.Queries;
 
 namespace Allegro.CosmosDb.Migrator.Application.Migrations.Queries
 {
-    // TODO: pagable
+    // TODO: paging
     [Contract]
     public class GetMigrations : IQuery<IEnumerable<MigrationDto>>
     {

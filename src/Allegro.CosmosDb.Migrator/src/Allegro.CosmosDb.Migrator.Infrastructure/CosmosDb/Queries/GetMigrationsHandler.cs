@@ -32,7 +32,7 @@ namespace Allegro.CosmosDb.Migrator.Infrastructure.CosmosDb.Queries
 
             var items = new List<MigrationDto>();
 
-            // PPTODO: support paging with continuation token
+            // TODO: support paging with continuation token
             await foreach (var document in documents)
             {
                 items.Add(document.AsDto());
