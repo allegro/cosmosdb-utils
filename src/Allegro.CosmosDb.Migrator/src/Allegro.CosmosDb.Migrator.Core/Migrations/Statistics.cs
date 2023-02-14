@@ -68,13 +68,14 @@ namespace Allegro.CosmosDb.Migrator.Core.Migrations
 
         public void Update(long sourceCount, long destinationCount)
         {
-            var timeSpan = DateTime.UtcNow - LastUpdate;
+            var now = DateTime.UtcNow;
+            var timeSpan = now - LastUpdate;
             var inserted = destinationCount - DestinationCount;
 
             CurrentInsertRatePerSeconds = (inserted / timeSpan.TotalMilliseconds) * 1000;
             SourceCount = sourceCount;
             DestinationCount = destinationCount;
-            LastUpdate = DateTime.UtcNow;
+            LastUpdate = now;
         }
 
         public void Start()

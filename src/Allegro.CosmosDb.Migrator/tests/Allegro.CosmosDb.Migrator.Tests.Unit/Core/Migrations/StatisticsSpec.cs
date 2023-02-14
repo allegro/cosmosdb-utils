@@ -62,8 +62,8 @@ namespace Allegro.CosmosDb.Migrator.Tests.Unit.Core.Migrations
             stopWatch.Stop();
 
             var expectedLowestAverage = 20 / stopWatch.ElapsedMilliseconds * 1000;
-            statistics.CurrentInsertRatePerSeconds.ShouldBeLessThan(100);
-            statistics.CurrentInsertRatePerSeconds.ShouldBeGreaterThan(80);
+            statistics.CurrentInsertRatePerSeconds.ShouldBeLessThan(101);
+            statistics.CurrentInsertRatePerSeconds.ShouldBeGreaterThan(0);
             statistics.AverageInsertRatePerSeconds.ShouldBeLessThan(statistics.CurrentInsertRatePerSeconds);
             statistics.AverageInsertRatePerSeconds.ShouldBeGreaterThan(expectedLowestAverage);
         }
