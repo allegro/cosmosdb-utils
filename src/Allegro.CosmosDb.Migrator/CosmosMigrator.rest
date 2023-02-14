@@ -1,0 +1,50 @@
+@url = http://localhost:5000
+@migrationId = 943ba53c-a62b-44bf-8b45-1d96adca6fe8
+
+@dateTime = 2020-01-10 00:00:01
+
+
+###
+GET {{url}}/migrations/{{migrationId}}
+
+
+###
+GET {{url}}/migrations/{{migrationId}}/statistics
+
+###
+GET {{url}}/migrations
+
+###
+POST {{url}}/migrations
+Content-Type: application/json
+
+{
+  "sourceConnectionString": "AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==",
+  "sourceDbName":  "Migrator",
+  "sourceCollectionName":  "migrations",
+  "sourceMaxRuConsumption":  1000,
+  "destinationConnectionString": "AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==",
+  "destinationDbName":  "Migrator",
+  "destinationCollectionName":  "migrations2",
+  "destinationMaxRuConsumption":  1000,
+  "startFromUtc" : "2020-01-10T00:00:01"
+}
+
+###
+PUT {{url}}/migrations/{{migrationId}}/pause
+Content-Type: application/json
+
+{
+  "migrationId" : "{{migrationId}}"
+}
+
+###
+PUT {{url}}/migrations/{{migrationId}}/resume
+Content-Type: application/json
+
+{
+  "migrationId" : "{{migrationId}}"
+}
+
+###
+DELETE {{url}}/migrations/{{migrationId}}

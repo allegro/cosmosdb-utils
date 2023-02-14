@@ -421,6 +421,9 @@ dotnet_diagnostic.MA0006.severity = none
 # MA0011: IFormatProvider is missing
 dotnet_diagnostic.MA0011.severity = suggestion
 
+# MA0015 - Specify the parameter name in ArgumentException
+dotnet_diagnostic.MA0015.severity = suggestion
+
 # MA0016: Prefer return collection abstraction instead of implementation
 dotnet_diagnostic.MA0016.severity = suggestion
 
