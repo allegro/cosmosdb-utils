@@ -1,24 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
-        <PackageReference Include="NBuilder" Version="6.1.0" />
-        <PackageReference Include="NSubstitute" Version="4.4.0" />
-        <PackageReference Include="Shouldly" Version="4.1.0" />
-        <PackageReference Include="xunit" Version="2.4.2" />
-        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1"/>
+    <PackageReference Include="NBuilder" Version="6.1.0"/>
+    <PackageReference Include="NSubstitute" Version="4.4.0"/>
+    <PackageReference Include="Shouldly" Version="4.1.0"/>
+    <PackageReference Include="xunit" Version="2.4.2"/>
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\..\src\Allegro.CosmosDb.Migrator.Application\Allegro.CosmosDb.Migrator.Application.csproj" />
-      <ProjectReference Include="..\..\src\Allegro.CosmosDb.Migrator.Core\Allegro.CosmosDb.Migrator.Core.csproj" />
-      <ProjectReference Include="..\..\src\Allegro.CosmosDb.Migrator.Infrastructure\Allegro.CosmosDb.Migrator.Infrastructure.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Allegro.CosmosDb.Migrator.Application\Allegro.CosmosDb.Migrator.Application.csproj"/>
+    <ProjectReference Include="..\..\src\Allegro.CosmosDb.Migrator.Core\Allegro.CosmosDb.Migrator.Core.csproj"/>
+    <ProjectReference Include="..\..\src\Allegro.CosmosDb.Migrator.Infrastructure\Allegro.CosmosDb.Migrator.Infrastructure.csproj"/>
+  </ItemGroup>
 </Project>

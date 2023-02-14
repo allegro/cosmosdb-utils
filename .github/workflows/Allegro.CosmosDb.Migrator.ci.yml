@@ -1,0 +1,19 @@
+name: Build Allegro.CosmosDb.BatchUtilities
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/Allegro.CosmosDb.Migrator/**'
+      - 'src/*'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'src/Allegro.CosmosDb.Migrator/**'
+      - 'src/*'
+
+jobs:
+  ci:
+    uses: ./.github/workflows/template.yml
+    with:
+      projectName: Allegro.CosmosDb.Migrator
