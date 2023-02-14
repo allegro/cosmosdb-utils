@@ -1,4 +1,4 @@
-name: Build Allegro.CosmosDb.BatchUtilities
+name: Build Allegro.CosmosDb.Migrator
 
 on:
   push:
