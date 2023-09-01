@@ -5,7 +5,7 @@ using Microsoft.Azure.Cosmos;
 
 namespace Allegro.CosmosDb.BatchUtilities
 {
-    public class CosmosBatchClientProvider : ICosmosBatchClientProvider
+    internal class CosmosBatchClientProvider : ICosmosBatchClientProvider
     {
         internal ConcurrentDictionary<string, CosmosBatchClientBuilderWrapper> CosmosClientBuilders { get; }
 

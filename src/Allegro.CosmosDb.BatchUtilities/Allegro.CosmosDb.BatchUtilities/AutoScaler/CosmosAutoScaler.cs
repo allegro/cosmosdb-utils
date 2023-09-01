@@ -13,7 +13,7 @@ namespace Allegro.CosmosDb.BatchUtilities
         void ReportBatchStart();
     }
 
-    public class CosmosAutoScaler : ICosmosAutoScaler
+    internal class CosmosAutoScaler : ICosmosAutoScaler
     {
         private readonly ILogger<CosmosAutoScaler> _logger;
         private readonly ICosmosScalableObject _scalableObject;
