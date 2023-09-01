@@ -51,7 +51,6 @@ namespace Allegro.CosmosDb.BatchUtilities
                 var resourceNames = request.ExtractResourceNamesFromRequest();
                 if (resourceNames == null)
                 {
-                    _logger.LogError("Extracting resource names from cosmos request failed!");
                     return null;
                 }
 
