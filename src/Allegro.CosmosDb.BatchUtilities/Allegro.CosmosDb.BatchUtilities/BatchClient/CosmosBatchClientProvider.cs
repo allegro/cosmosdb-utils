@@ -9,7 +9,7 @@ namespace Allegro.CosmosDb.BatchUtilities
     {
         internal ConcurrentDictionary<string, CosmosBatchClientBuilderWrapper> CosmosClientBuilders { get; }
 
-        internal CosmosBatchClientProvider(IEnumerable<CosmosBatchClientBuilderWrapper> wrappers)
+        public CosmosBatchClientProvider(IEnumerable<CosmosBatchClientBuilderWrapper> wrappers)
         {
             CosmosClientBuilders = new ConcurrentDictionary<string, CosmosBatchClientBuilderWrapper>(
                 wrappers.Select(p => new KeyValuePair<string, CosmosBatchClientBuilderWrapper>(p.ClientName.ToLowerInvariant(), p)));

@@ -60,21 +60,6 @@ namespace Allegro.CosmosDb.BatchUtilities.Extensions
             this IServiceCollection services,
             Func<IServiceProvider, CosmosClientBuilder> cosmosClientBuilderFunc,
             string clientName,
-            params BatchUtilitiesRegistration[] registrationFactories)
-        {
-            services.AddCosmosBatchClient(
-                cosmosClientBuilderFunc,
-                clientName,
-                registrationFactories.Select(p => new Func<IServiceProvider, BatchUtilitiesRegistration>(_ => p))
-                    .ToArray());
-
-            return services;
-        }
-
-        public static IServiceCollection AddCosmosBatchClient(
-            this IServiceCollection services,
-            Func<IServiceProvider, CosmosClientBuilder> cosmosClientBuilderFunc,
-            string clientName,
             params Func<IServiceProvider, BatchUtilitiesRegistration>[] registrationFactories)
         {
             var name = clientName.ToLowerInvariant();

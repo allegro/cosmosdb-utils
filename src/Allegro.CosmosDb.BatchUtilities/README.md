@@ -49,7 +49,7 @@ From version 2.0.0, library support creating multiple batch clients. Because of 
 services.AddCosmosBatchClient(
     _ => new CosmosBuilder(connectionString),
     "FirstClient",
-    BatchUtilitiesRegistration.ForContainer(
+    sp => BatchUtilitiesRegistration.ForContainer(
         "CosmosDemo", // db name
         "Demo",       // container name
         RateLimiter.WithMaxRps(200),
