@@ -39,6 +39,7 @@ CosmosAutoScaler has no distributed state. It will work in following scenarios:
 It will not work when there are many instances, but only some of them are doing batch processing work &mdash; in this case the idle instances will be scaling the Cosmos down.
 
 ## Multiple clients
+
 From version 2.0.0, library support creating multiple batch clients. Because of that some small breaking change were introduced. For more details see changelog. 
 
 ## How to use batch utilities
