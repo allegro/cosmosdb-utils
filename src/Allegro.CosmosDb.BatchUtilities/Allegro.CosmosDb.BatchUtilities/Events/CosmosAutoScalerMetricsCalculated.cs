@@ -8,7 +8,7 @@ namespace Allegro.CosmosDb.BatchUtilities.Events
     public class CosmosAutoScalerMetricsCalculatedEventArgs : EventArgs
     {
         public CosmosAutoScalerMetricsCalculatedEventArgs(
-            CosmosAutoScaler cosmosAutoScaler,
+            ICosmosAutoScaler cosmosAutoScaler,
             string? databaseName,
             string? containerName,
             double limiterMaxRate,
@@ -28,7 +28,7 @@ namespace Allegro.CosmosDb.BatchUtilities.Events
         /// <summary>
         /// <see cref="CosmosAutoScaler"/> that emitted the event.
         /// </summary>
-        public CosmosAutoScaler CosmosAutoScaler { get; }
+        public ICosmosAutoScaler CosmosAutoScaler { get; }
 
         /// <summary>
         /// Name of the database that is being auto scaled.

@@ -4,7 +4,7 @@ This library contains utilities for performing batch operations in Azure CosmosD
 
 ## Rate limiter
 
-Rate limiter allows specifying precise limit of RU consumed per second on a container or a database (in case of shared throughput scenario). Use `ICosmosClientFactory.GetBatchClient()` to get CosmosClient with rate limiting turned on.
+Rate limiter allows specifying precise limit of RU consumed per second on a container or a database (in case of shared throughput scenario). Use `ICosmosBatchClientProvider.GetBatchClient(string clientName)` to get CosmosClient with rate limiting turned on.
 
 ### Note on distributed scenarios
 
@@ -38,13 +38,19 @@ CosmosAutoScaler has no distributed state. It will work in following scenarios:
 
 It will not work when there are many instances, but only some of them are doing batch processing work &mdash; in this case the idle instances will be scaling the Cosmos down.
 
+## Multiple clients
+
+From version 2.0.0, library support creating multiple batch clients. Because of that some small breaking change were introduced. For more details see changelog. 
+
 ## How to use batch utilities
 
 ### ConfigureServices
 
 ```c#
-services.AddCosmosBatchUtilities(
-    BatchUtilitiesRegistration.ForContainer(
+services.AddCosmosBatchClient(
+    _ => new CosmosBuilder(connectionString),
+    "FirstClient",
+    sp => BatchUtilitiesRegistration.ForContainer(
         "CosmosDemo", // db name
         "Demo",       // container name
         RateLimiter.WithMaxRps(200),
@@ -62,6 +68,8 @@ or pass the settings through configuration:
 
 ```c#
 services.AddCosmosBatchUtilitiesFromConfiguration(
+    _ => new CosmosBuilder(connectionString),
+    "FirstClient",
     Configuration,
     "CosmosDemo");
 ```
@@ -105,17 +113,18 @@ public class SampleBatchCommandHandler
 {
     private const string DatabaseName = "CosmosDemo";
     private const string ContainerName = "Demo";
+    private const string ClientName = "Client";
 
     private readonly Container _container;
     private readonly ICosmosAutoScaler _autoScaler;
 
     public SampleBatchCommandHandler(
-        ICosmosAutoScalerFactory cosmosAutoScalerFactory,
-        ICosmosClientProvider cosmosClientProvider)
+        ICosmosAutoScalerFactoryProvider cosmosAutoScalerFactoryProvider,
+        ICosmosBatchClientProvider cosmosClientProvider)
     {
         // get auto scaler and container using batch utilities factories
-        _autoScaler = cosmosAutoScalerFactory.ForContainer(DatabaseName, ContainerName);
-        _container = cosmosClientProvider.GetBatchClient().GetContainer(DatabaseName, ContainerName);
+        _autoScaler = cosmosAutoScalerFactory.GetFactory(ClientName).ForContainer(DatabaseName, ContainerName);
+        _container = cosmosClientProvider.GetBatchClient(ClientName).GetContainer(DatabaseName, ContainerName);
     }
 
     public async Task Handle(SampleBatchCommand command)

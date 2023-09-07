@@ -8,17 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Allegro.CosmosDb.BatchUtilities
 {
-    public interface ICosmosAutoScalerFactory
-    {
-        ICosmosAutoScaler ForContainer(
-            string databaseName,
-            string containerName);
-
-        ICosmosAutoScaler ForDatabase(
-            string databaseName);
-    }
-
-    public class CosmosAutoScalerFactory : ICosmosAutoScalerFactory
+    internal class CosmosAutoScalerFactory : ICosmosAutoScalerFactory
     {
         private readonly Dictionary<string, CosmosAutoScaler> _autoScalers;
 
