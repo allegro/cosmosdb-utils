@@ -1,4 +1,4 @@
-site_name: Allegro Pay Backstage docs
+site_name: cosmosdb-utils docs
 
 plugins:
   - techdocs-core
