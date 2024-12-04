@@ -3,11 +3,11 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: cosmosdb-utils
-  description: "This repo contains a collection of useful Azure CosmosDb SDK v3 extensions and utilities"
+  description: "This repo contains a collection of useful Azure CosmosDb SDK v3 extensions and utilities, developed as part of Allegro Pay product."
   title: Allegro CosmosDb utils
   annotations:
     backstage.io/techdocs-ref: dir:.
-    allegropay/entity-updated-at: '2024-12-04T08:15'
+    allegropay/entity-updated-at: '2023-11-03T08:15'
     github.com/project-slug: allegro/cosmosdb-utils
   links: []
 spec:
